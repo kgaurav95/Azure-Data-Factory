@@ -1,0 +1,21 @@
+{
+	"name": "LS_SPROCEDURE_ONPREM",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "LAPTOP-SHRV1M0L\\SQLEXPRESS",
+			"database": "SQLMIGRATION",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "Windows",
+			"userName": "LAPTOP-SHRV1M0L\\KSAURAV-95",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MzI5OTYyNS04NGU5LTRhZjAtYjdiNi04YjAyY2VkODI2OTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

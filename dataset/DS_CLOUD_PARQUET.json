@@ -1,0 +1,20 @@
+{
+	"name": "DS_CLOUD_PARQUET",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_CLOUD_PARQUET",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "restapioutput"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

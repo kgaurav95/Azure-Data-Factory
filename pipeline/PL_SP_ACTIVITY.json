@@ -1,0 +1,44 @@
+{
+	"name": "PL_SP_ACTIVITY",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP_INSERTCUSTOMER_TABLE_ACTIVITY",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[InsertCustomer]",
+					"storedProcedureParameters": {
+						"CustomerID": {
+							"value": "1024",
+							"type": "Int32"
+						},
+						"FirstName": {
+							"value": "KUMAR",
+							"type": "String"
+						},
+						"LastName": {
+							"value": "SAURAV",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SPROCEDURE_ONPREM",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-07-03T09:18:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,15 @@
+{
+	"name": "kgaurav95-adfdev",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "02b55608-3642-485a-9740-837b86f64e64",
+		"tenantId": "95e470b7-343d-431c-b171-85b23102c104"
+	}
+}

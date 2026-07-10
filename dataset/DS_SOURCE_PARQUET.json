@@ -1,0 +1,30 @@
+{
+	"name": "DS_SOURCE_PARQUET",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SOURCE_PARQUET",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "industry_sic.parquet",
+				"fileSystem": "outputcsv"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SIC_Code",
+				"type": "UTF8"
+			},
+			{
+				"name": "Description",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
