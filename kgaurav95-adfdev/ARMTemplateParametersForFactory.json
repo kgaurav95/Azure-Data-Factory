@@ -1,0 +1,171 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "kgaurav95-adfdev"
+		},
+		"CLOUD_SQL_MIGRATION_accountKey": {
+			"value": ""
+		},
+		"DS_CASE_TEXT_SINK_accountKey": {
+			"value": ""
+		},
+		"DS_VALIDCSV_SOURCE_connectionString": {
+			"value": ""
+		},
+		"LS_CASE_CSV_connectionString": {
+			"value": ""
+		},
+		"LS_CLOUD_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_CSV_INPUT_connectionString": {
+			"value": ""
+		},
+		"LS_FALSE_TEXT_connectionString": {
+			"value": ""
+		},
+		"LS_FILE_CHECK_connectionString": {
+			"value": ""
+		},
+		"LS_FILE_TYPES_connectionString": {
+			"value": ""
+		},
+		"LS_FOREACH_SWITCH_SINK_CP1_accountKey": {
+			"value": ""
+		},
+		"LS_FOREACH_SWITCH_SINK_CP2_accountKey": {
+			"value": ""
+		},
+		"LS_FOREACH_SWITCH_SOURCE_connectionString": {
+			"value": ""
+		},
+		"LS_FOREACH_SWITCH_SOURCE_CP1_connectionString": {
+			"value": ""
+		},
+		"LS_FOREACH_SWITCH_SOURCE_CP2_connectionString": {
+			"value": ""
+		},
+		"LS_GET_METADATA_accountKey": {
+			"value": ""
+		},
+		"LS_IF_TRUE_connectionString": {
+			"value": ""
+		},
+		"LS_IF_TRUE_SINK_accountKey": {
+			"value": ""
+		},
+		"LS_PARQUET_LOOKUP_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_connectionString": {
+			"value": ""
+		},
+		"LS_SINK_BLOB_connectionString": {
+			"value": ""
+		},
+		"LS_SINK_TEXTTOCSV_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_VALIDCSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_VALIDCSV_connectionString": {
+			"value": ""
+		},
+		"LS_SPROCEDURE_ONPREM_password": {
+			"value": ""
+		},
+		"LS_SQL_MIGRATION_password": {
+			"value": ""
+		},
+		"LS_SWITCHCSV_TEST_accountKey": {
+			"value": ""
+		},
+		"LS_TEXT_SINK_accountKey": {
+			"value": ""
+		},
+		"LS_TEXT_SOURCE_connectionString": {
+			"value": ""
+		},
+		"LS_TEXT_SWITCH_SINK_accountKey": {
+			"value": ""
+		},
+		"LS_TEXT_SWITCH_SOURCE_connectionString": {
+			"value": ""
+		},
+		"LS_TRUE_PAR_accountKey": {
+			"value": ""
+		},
+		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"DS_CASE_TEXT_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_CLOUD_PARQUET_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FOREACH_SWITCH_SINK_CP1_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FOREACH_SWITCH_SINK_CP2_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_GET_METADATA_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_IF_TRUE_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_PARQUET_LOOKUP_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
+			"value": "https://retoolapi.dev/5yDVOt/data"
+		},
+		"LS_SINK_TEXTTOCSV_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SINK_VALIDCSV_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_PARQUET_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SPROCEDURE_ONPREM_properties_typeProperties_server": {
+			"value": "LAPTOP-SHRV1M0L\\SQLEXPRESS"
+		},
+		"LS_SPROCEDURE_ONPREM_properties_typeProperties_database": {
+			"value": "SQLMIGRATION"
+		},
+		"LS_SPROCEDURE_ONPREM_properties_typeProperties_userName": {
+			"value": "LAPTOP-SHRV1M0L\\KSAURAV-95"
+		},
+		"LS_SQL_MIGRATION_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_SQL_MIGRATION_properties_typeProperties_database": {
+			"value": "SQLMIGRATION"
+		},
+		"LS_SQL_MIGRATION_properties_typeProperties_userName": {
+			"value": "LAPTOP-SHRV1M0L\\KSAURAV-95"
+		},
+		"LS_SWITCHCSV_TEST_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_TEXT_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_TRUE_PAR_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		}
+	}
+}
