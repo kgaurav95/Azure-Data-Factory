@@ -160,30 +160,7 @@
 						}
 					},
 					{
-						"name": "FILTER_CSV_FILE_SEGREGATION",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "GET_METEDATA_FILE_SEGREGATION",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@or(endswith(item().name, '.csv'), endswith(item().name, '.txt'))",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "ForEach",
+						"name": "FILE_SEGREGATION_TO_FOLDER",
 						"type": "ForEach",
 						"dependsOn": [
 							{
@@ -196,7 +173,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('FILTER_CSV_FILE_SEGREGATION').output.value",
+								"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
 								"type": "Expression"
 							},
 							"activities": [
@@ -207,12 +184,12 @@
 									"userProperties": [],
 									"typeProperties": {
 										"on": {
-											"value": "@substring(item().name, add(lastIndexOf(item().name, '.'),1), 3)\n",
+											"value": "@last(split(item().name,'.'))\n",
 											"type": "Expression"
 										},
 										"cases": [
 											{
-												"value": "CaseCSV",
+												"value": "csv",
 												"activities": [
 													{
 														"name": "Copy CSV TO ADLS GEN2",
@@ -277,7 +254,7 @@
 																"type": "DatasetReference",
 																"parameters": {
 																	"ADLSFOLDER": {
-																		"value": "@csvdata",
+																		"value": "@'csvdata'",
 																		"type": "Expression"
 																	},
 																	"ADLSFILENAME": {
@@ -291,7 +268,7 @@
 												]
 											},
 											{
-												"value": "Copy TEXT TO ADLS GEN2",
+												"value": "txt",
 												"activities": [
 													{
 														"name": "Copy TEXT TO ADLS GEN2",
@@ -329,7 +306,7 @@
 																"referenceName": "DS_BLOB_TEXT_SOURCE",
 																"type": "DatasetReference",
 																"parameters": {
-																	"sourcefile": "item().name"
+																	"sourcefile": "@item().name"
 																}
 															}
 														],
@@ -339,7 +316,7 @@
 																"type": "DatasetReference",
 																"parameters": {
 																	"ADLSFOLDER": {
-																		"value": "@textdata",
+																		"value": "@'textdata'",
 																		"type": "Expression"
 																	},
 																	"ADLSFILENAME": {
@@ -356,6 +333,29 @@
 									}
 								}
 							]
+						}
+					},
+					{
+						"name": "FILTER_CSV_FILE_SEGREGATION",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "GET_METEDATA_FILE_SEGREGATION",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@or(\nequals(last(split(item().name,'.')),'csv'),\nequals(last(split(item().name,'.')),'txt')\n)",
+								"type": "Expression"
+							}
 						}
 					}
 				],
