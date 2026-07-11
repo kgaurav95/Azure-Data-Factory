@@ -1,0 +1,38 @@
+{
+	"name": "DS_ADLS_RECEIVE_CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_RECEIVE_CSV",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ADLSFOLDER": {
+				"type": "string"
+			},
+			"ADLSFILENAME": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ADLSFILENAME",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().ADLSFOLDER",
+					"type": "Expression"
+				},
+				"fileSystem": "csvfiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
