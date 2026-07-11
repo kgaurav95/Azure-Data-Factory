@@ -1,0 +1,22 @@
+{
+	"name": "DS_SINK_DELETE_ACTIVITY",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_DELETE_ACTIVITY",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "switchcasetest"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
