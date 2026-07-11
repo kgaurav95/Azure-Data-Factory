@@ -14,13 +14,28 @@
 		"DS_VALIDCSV_SOURCE_connectionString": {
 			"value": ""
 		},
+		"LS_ADLS_RECEIVE_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_BLOB_CSV_SOURCE_connectionString": {
+			"value": ""
+		},
+		"LS_BLOB_TEXT_SOURCE_connectionString": {
+			"value": ""
+		},
 		"LS_CASE_CSV_connectionString": {
 			"value": ""
 		},
 		"LS_CLOUD_PARQUET_accountKey": {
 			"value": ""
 		},
+		"LS_CSVITEM_TO_ADLS_connectionString": {
+			"value": ""
+		},
 		"LS_CSV_INPUT_connectionString": {
+			"value": ""
+		},
+		"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_accountKey": {
 			"value": ""
 		},
 		"LS_FALSE_TEXT_connectionString": {
@@ -56,6 +71,9 @@
 		"LS_IF_TRUE_SINK_accountKey": {
 			"value": ""
 		},
+		"LS_LOGGING_DELETE_connectionString": {
+			"value": ""
+		},
 		"LS_PARQUET_LOOKUP_accountKey": {
 			"value": ""
 		},
@@ -65,10 +83,16 @@
 		"LS_SINK_BLOB_connectionString": {
 			"value": ""
 		},
+		"LS_SINK_DELETE_ACTIVITY_accountKey": {
+			"value": ""
+		},
 		"LS_SINK_TEXTTOCSV_accountKey": {
 			"value": ""
 		},
 		"LS_SINK_VALIDCSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_DELETE_ACTIVITY_connectionString": {
 			"value": ""
 		},
 		"LS_SOURCE_PARQUET_accountKey": {
@@ -89,6 +113,9 @@
 		"LS_TEXT_SINK_accountKey": {
 			"value": ""
 		},
+		"LS_TEXT_SINK_ADLS_accountKey": {
+			"value": ""
+		},
 		"LS_TEXT_SOURCE_connectionString": {
 			"value": ""
 		},
@@ -107,7 +134,13 @@
 		"DS_CASE_TEXT_SINK_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
+		"LS_ADLS_RECEIVE_CSV_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
 		"LS_CLOUD_PARQUET_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_FOREACH_SWITCH_SINK_CP1_properties_typeProperties_url": {
@@ -127,6 +160,9 @@
 		},
 		"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
 			"value": "https://retoolapi.dev/5yDVOt/data"
+		},
+		"LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_TEXTTOCSV_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
@@ -159,6 +195,9 @@
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_TEXT_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_TEXT_SINK_ADLS_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
