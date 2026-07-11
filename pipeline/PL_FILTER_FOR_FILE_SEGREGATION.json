@@ -1,0 +1,60 @@
+{
+	"name": "PL_FILTER_FOR_FILE_SEGREGATION",
+	"properties": {
+		"activities": [
+			{
+				"name": "GET_METEDATA_FILE_SEGREGATION",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_FILE_CHECK",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "FILTER_CSV_FILE_SEGREGATION",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "GET_METEDATA_FILE_SEGREGATION",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@or(endswith(item().name, '.csv'), endswith(item().name, '.txt'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
