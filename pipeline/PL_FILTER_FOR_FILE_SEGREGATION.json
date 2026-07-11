@@ -33,29 +33,11 @@
 				}
 			},
 			{
-				"name": "FILTER_CSV_FILE_SEGREGATION",
-				"type": "Filter",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
-						"type": "Expression"
-					},
-					"condition": {
-						"value": "@or(endswith(item().name, '.csv'), endswith(item().name, '.txt'))",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "ForEach",
+				"name": "FILE_SEGREGATION_TO_FOLDER",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "GET_METEDATA_FILE_SEGREGATION",
+						"activity": "FILTER_CSV_FILE_SEGREGATION",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -197,7 +179,7 @@
 														"referenceName": "DS_BLOB_TEXT_SOURCE",
 														"type": "DatasetReference",
 														"parameters": {
-															"sourcefile": "item().name"
+															"sourcefile": "@item().name"
 														}
 													}
 												],
@@ -224,6 +206,29 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "FILTER_CSV_FILE_SEGREGATION",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "GET_METEDATA_FILE_SEGREGATION",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@or(\nequals(last(split(item().name,'.')),'csv'),\nequals(last(split(item().name,'.')),'txt')\n)",
+						"type": "Expression"
+					}
 				}
 			}
 		],
