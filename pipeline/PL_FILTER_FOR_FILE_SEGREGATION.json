@@ -35,14 +35,9 @@
 			{
 				"name": "FILTER_CSV_FILE_SEGREGATION",
 				"type": "Filter",
-				"dependsOn": [
-					{
-						"activity": "GET_METEDATA_FILE_SEGREGATION",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
@@ -60,7 +55,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "FILTER_CSV_FILE_SEGREGATION",
+						"activity": "GET_METEDATA_FILE_SEGREGATION",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -69,7 +64,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('FILTER_CSV_FILE_SEGREGATION').output.value",
+						"value": "@activity('GET_METEDATA_FILE_SEGREGATION').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
@@ -150,7 +145,7 @@
 														"type": "DatasetReference",
 														"parameters": {
 															"ADLSFOLDER": {
-																"value": "@csvdata",
+																"value": "@'csvdata'",
 																"type": "Expression"
 															},
 															"ADLSFILENAME": {
@@ -212,7 +207,7 @@
 														"type": "DatasetReference",
 														"parameters": {
 															"ADLSFOLDER": {
-																"value": "@textdata",
+																"value": "@'textdata'",
 																"type": "Expression"
 															},
 															"ADLSFILENAME": {
