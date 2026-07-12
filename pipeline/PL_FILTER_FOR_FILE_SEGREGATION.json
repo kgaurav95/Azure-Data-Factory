@@ -137,6 +137,51 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "DeleteCSVFile",
+												"type": "Delete",
+												"dependsOn": [
+													{
+														"activity": "Copy CSV TO ADLS GEN2",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"dataset": {
+														"referenceName": "DS_BLOB_CSV_SOURCE",
+														"type": "DatasetReference",
+														"parameters": {
+															"sourcefile": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													},
+													"logStorageSettings": {
+														"linkedServiceName": {
+															"referenceName": "LS_BLOB_CSV_SOURCE",
+															"type": "LinkedServiceReference"
+														},
+														"path": "inputcsv"
+													},
+													"enableLogging": true,
+													"storeSettings": {
+														"type": "AzureBlobStorageReadSettings",
+														"recursive": false,
+														"enablePartitionDiscovery": false
+													}
+												}
 											}
 										]
 									},
@@ -199,6 +244,52 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "DeleteTextFile",
+												"description": "Delete text Input from Inputcsv Container in BLOB.",
+												"type": "Delete",
+												"dependsOn": [
+													{
+														"activity": "Copy TEXT TO ADLS GEN2",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"dataset": {
+														"referenceName": "DS_BLOB_TEXT_SOURCE",
+														"type": "DatasetReference",
+														"parameters": {
+															"sourcefile": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													},
+													"logStorageSettings": {
+														"linkedServiceName": {
+															"referenceName": "LS_BLOB_TEXT_SOURCE",
+															"type": "LinkedServiceReference"
+														},
+														"path": "inputcsv"
+													},
+													"enableLogging": true,
+													"storeSettings": {
+														"type": "AzureBlobStorageReadSettings",
+														"recursive": false,
+														"enablePartitionDiscovery": false
+													}
+												}
 											}
 										]
 									}
