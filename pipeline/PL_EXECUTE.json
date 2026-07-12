@@ -1,0 +1,24 @@
+{
+	"name": "PL_EXECUTE",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline_PL_FILTER",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_FILTER",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
