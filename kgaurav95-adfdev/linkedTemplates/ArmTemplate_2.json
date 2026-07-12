@@ -7,27 +7,36 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "kgaurav95-adfdev"
 		},
-		"LS_SPROCEDURE_ONPREM_password": {
+		"LS_TRUE_PAR_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_SPROCEDURE_ONPREM'"
+			"metadata": "Secure string for 'accountKey' of 'LS_TRUE_PAR'"
 		},
-		"LS_SPROCEDURE_ONPREM_properties_typeProperties_server": {
+		"LS_TRUE_PAR_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "LAPTOP-SHRV1M0L\\SQLEXPRESS"
-		},
-		"LS_SPROCEDURE_ONPREM_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "SQLMIGRATION"
-		},
-		"LS_SPROCEDURE_ONPREM_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "LAPTOP-SHRV1M0L\\KSAURAV-95"
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_TRUE_PAR')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_TRUE_PAR_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_TRUE_PAR_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
@@ -438,6 +447,41 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_SOURCE_DATA_TO_LOOKUP_FILTER')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SOURCE_DATA_TO_LOOKUP_FILTER",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "industry_sic.csv",
+						"fileSystem": "switchcasetest"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "SIC_Code",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_SOURCE_DELETE_ACTIVITY')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -538,70 +582,6 @@
 				]
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_TEXT_SINK_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_TEXT_SINK_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"ADLSFOLDER": {
-						"type": "string"
-					},
-					"ADLSFILENAME": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().ADLSFILENAME",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().ADLSFOLDER",
-							"type": "Expression"
-						},
-						"fileSystem": "textfiles"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SPROCEDURE_ONPREM')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"server": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_server')]",
-					"database": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_database')]",
-					"encrypt": "optional",
-					"trustServerCertificate": false,
-					"authenticationType": "Windows",
-					"userName": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SPROCEDURE_ONPREM_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime1",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
 		}
 	]
 }

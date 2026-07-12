@@ -123,6 +123,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_VALIDCSV'"
 		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SOURCE_DATA_TO_LOOKUP_FILTER'"
+		},
 		"LS_SOURCE_DELETE_ACTIVITY_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_DELETE_ACTIVITY'"
@@ -224,6 +228,10 @@
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_VALIDCSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
@@ -431,6 +439,9 @@
 					"LS_SINK_VALIDCSV_accountKey": {
 						"value": "[parameters('LS_SINK_VALIDCSV_accountKey')]"
 					},
+					"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
+						"value": "[parameters('LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey')]"
+					},
 					"LS_SOURCE_DELETE_ACTIVITY_connectionString": {
 						"value": "[parameters('LS_SOURCE_DELETE_ACTIVITY_connectionString')]"
 					},
@@ -458,9 +469,6 @@
 					"LS_TEXT_SWITCH_SOURCE_connectionString": {
 						"value": "[parameters('LS_TEXT_SWITCH_SOURCE_connectionString')]"
 					},
-					"LS_TRUE_PAR_accountKey": {
-						"value": "[parameters('LS_TRUE_PAR_accountKey')]"
-					},
 					"LS_IF_TRUE_SINK_properties_typeProperties_url": {
 						"value": "[parameters('LS_IF_TRUE_SINK_properties_typeProperties_url')]"
 					},
@@ -479,6 +487,9 @@
 					"LS_SINK_VALIDCSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_SINK_VALIDCSV_properties_typeProperties_url')]"
 					},
+					"LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url": {
+						"value": "[parameters('LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url')]"
+					},
 					"LS_SOURCE_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SOURCE_PARQUET_properties_typeProperties_url')]"
 					},
@@ -493,9 +504,6 @@
 					},
 					"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
 						"value": "[parameters('LS_TEXT_SWITCH_SINK_properties_typeProperties_url')]"
-					},
-					"LS_TRUE_PAR_properties_typeProperties_url": {
-						"value": "[parameters('LS_TRUE_PAR_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -517,17 +525,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"LS_SPROCEDURE_ONPREM_password": {
-						"value": "[parameters('LS_SPROCEDURE_ONPREM_password')]"
+					"LS_TRUE_PAR_accountKey": {
+						"value": "[parameters('LS_TRUE_PAR_accountKey')]"
 					},
-					"LS_SPROCEDURE_ONPREM_properties_typeProperties_server": {
-						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_server')]"
-					},
-					"LS_SPROCEDURE_ONPREM_properties_typeProperties_database": {
-						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_database')]"
-					},
-					"LS_SPROCEDURE_ONPREM_properties_typeProperties_userName": {
-						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_userName')]"
+					"LS_TRUE_PAR_properties_typeProperties_url": {
+						"value": "[parameters('LS_TRUE_PAR_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -549,8 +551,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SPROCEDURE_ONPREM_password": {
+						"value": "[parameters('LS_SPROCEDURE_ONPREM_password')]"
+					},
 					"LS_SQL_MIGRATION_password": {
 						"value": "[parameters('LS_SQL_MIGRATION_password')]"
+					},
+					"LS_SPROCEDURE_ONPREM_properties_typeProperties_server": {
+						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_server')]"
+					},
+					"LS_SPROCEDURE_ONPREM_properties_typeProperties_database": {
+						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_database')]"
+					},
+					"LS_SPROCEDURE_ONPREM_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SPROCEDURE_ONPREM_properties_typeProperties_userName')]"
 					},
 					"LS_SQL_MIGRATION_properties_typeProperties_server": {
 						"value": "[parameters('LS_SQL_MIGRATION_properties_typeProperties_server')]"

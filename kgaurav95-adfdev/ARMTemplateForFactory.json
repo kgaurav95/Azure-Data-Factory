@@ -123,6 +123,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_VALIDCSV'"
 		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SOURCE_DATA_TO_LOOKUP_FILTER'"
+		},
 		"LS_SOURCE_DELETE_ACTIVITY_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_DELETE_ACTIVITY'"
@@ -227,6 +231,10 @@
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
 		"LS_SOURCE_PARQUET_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
@@ -280,6 +288,110 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_CONDITIONAL_FILTER')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Filter_CONDIONAL_DATA FROM SOURCE FILE",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "Lookup",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup').output.value",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@equals(item().SIC_Code,'1110')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Lookup",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "DS_SOURCE_DATA_TO_LOOKUP_FILTER",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_SOURCE_DATA_TO_LOOKUP_FILTER')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_EXECUTE')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Execute Pipeline_PL_FILTER",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "PL_FILTER",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_FILTER')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/PL_FILTER')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -492,6 +604,51 @@
 																}
 															}
 														]
+													},
+													{
+														"name": "DeleteCSVFile",
+														"type": "Delete",
+														"dependsOn": [
+															{
+																"activity": "Copy CSV TO ADLS GEN2",
+																"dependencyConditions": [
+																	"Succeeded"
+																]
+															}
+														],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"dataset": {
+																"referenceName": "DS_BLOB_CSV_SOURCE",
+																"type": "DatasetReference",
+																"parameters": {
+																	"sourcefile": {
+																		"value": "@item().name",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"logStorageSettings": {
+																"linkedServiceName": {
+																	"referenceName": "LS_BLOB_CSV_SOURCE",
+																	"type": "LinkedServiceReference"
+																},
+																"path": "inputcsv"
+															},
+															"enableLogging": true,
+															"storeSettings": {
+																"type": "AzureBlobStorageReadSettings",
+																"recursive": false,
+																"enablePartitionDiscovery": false
+															}
+														}
 													}
 												]
 											},
@@ -554,6 +711,52 @@
 																}
 															}
 														]
+													},
+													{
+														"name": "DeleteTextFile",
+														"description": "Delete text Input from Inputcsv Container in BLOB.",
+														"type": "Delete",
+														"dependsOn": [
+															{
+																"activity": "Copy TEXT TO ADLS GEN2",
+																"dependencyConditions": [
+																	"Succeeded"
+																]
+															}
+														],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"dataset": {
+																"referenceName": "DS_BLOB_TEXT_SOURCE",
+																"type": "DatasetReference",
+																"parameters": {
+																	"sourcefile": {
+																		"value": "@item().name",
+																		"type": "Expression"
+																	}
+																}
+															},
+															"logStorageSettings": {
+																"linkedServiceName": {
+																	"referenceName": "LS_BLOB_TEXT_SOURCE",
+																	"type": "LinkedServiceReference"
+																},
+																"path": "inputcsv"
+															},
+															"enableLogging": true,
+															"storeSettings": {
+																"type": "AzureBlobStorageReadSettings",
+																"recursive": false,
+																"enablePartitionDiscovery": false
+															}
+														}
 													}
 												]
 											}
@@ -597,7 +800,9 @@
 				"[concat(variables('factoryId'), '/datasets/DS_BLOB_CSV_SOURCE')]",
 				"[concat(variables('factoryId'), '/datasets/DS_ADLS_RECEIVE_CSV')]",
 				"[concat(variables('factoryId'), '/datasets/DS_BLOB_TEXT_SOURCE')]",
-				"[concat(variables('factoryId'), '/datasets/DS_TEXT_SINK_ADLS')]"
+				"[concat(variables('factoryId'), '/datasets/DS_TEXT_SINK_ADLS')]",
+				"[concat(variables('factoryId'), '/linkedServices/LS_BLOB_CSV_SOURCE')]",
+				"[concat(variables('factoryId'), '/linkedServices/LS_BLOB_TEXT_SOURCE')]"
 			]
 		},
 		{
@@ -1885,6 +2090,43 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_SOURCE_DATA_TO_LOOKUP_FILTER')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SOURCE_DATA_TO_LOOKUP_FILTER",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "industry_sic.csv",
+						"fileSystem": "switchcasetest"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "SIC_Code",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SOURCE_DATA_TO_LOOKUP_FILTER')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_SOURCE_DELETE_ACTIVITY')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2512,6 +2754,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SINK_VALIDCSV_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SOURCE_DATA_TO_LOOKUP_FILTER')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey')]"
 					}
 				}
 			},

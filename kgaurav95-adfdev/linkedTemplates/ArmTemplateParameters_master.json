@@ -92,6 +92,9 @@
 		"LS_SINK_VALIDCSV_accountKey": {
 			"value": ""
 		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
+			"value": ""
+		},
 		"LS_SOURCE_DELETE_ACTIVITY_connectionString": {
 			"value": ""
 		},
@@ -168,6 +171,9 @@
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_VALIDCSV_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SOURCE_PARQUET_properties_typeProperties_url": {
