@@ -1,0 +1,31 @@
+{
+	"name": "DS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ADLSFILE": {
+				"type": "array"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ADLSFILE",
+					"type": "Expression"
+				},
+				"fileSystem": "filterconditionaloutput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
