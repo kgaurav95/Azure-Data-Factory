@@ -139,7 +139,7 @@
 														"type": "DatasetReference",
 														"parameters": {
 															"FileName": {
-																"value": "@activity('Filter_CONDIONAL_DATA FROM SOURCE FILE').output.value",
+																"value": "@item().SIC_Code",
 																"type": "Expression"
 															}
 														}
