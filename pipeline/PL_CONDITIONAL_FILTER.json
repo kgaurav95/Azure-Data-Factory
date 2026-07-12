@@ -86,7 +86,7 @@
 								},
 								"cases": [
 									{
-										"value": "copy records to ADLS",
+										"value": "COPYDATA",
 										"activities": [
 											{
 												"name": "COPY FILTER OUTPUT TO ADLS GEN2",
