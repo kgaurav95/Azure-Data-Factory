@@ -57,8 +57,8 @@
 				}
 			},
 			{
-				"name": "Copy filter output to ADLS",
-				"type": "Copy",
+				"name": "ForEach",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "Filter_CONDIONAL_DATA FROM SOURCE FILE",
@@ -67,71 +67,108 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+					"items": {
+						"value": "@activity('Filter_CONDIONAL_DATA FROM SOURCE FILE').output.value",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_FILEROUTPUT_ADLS",
-						"type": "DatasetReference",
-						"parameters": {
-							"source": {
-								"value": "@activity('Filter_CONDIONAL_DATA FROM SOURCE FILE').output.value",
-								"type": "Expression"
+					"activities": [
+						{
+							"name": "Switch",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@item().Extension",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "copy records to ADLS",
+										"activities": [
+											{
+												"name": "COPY FILTER OUTPUT TO ADLS GEN2",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobStorageReadSettings",
+															"recursive": true,
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ".txt"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "DS_SOURCE_BLOB_CSV_FILERCONDITIONAL",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_SINK_BLOB_CSV_FILERCONDITIONAL",
+														"type": "DatasetReference",
+														"parameters": {
+															"Filename": {
+																"value": "@concat('SIC_', string(item().SIC_Code), '.csv')\n",
+																"type": "Expression"
+															},
+															"FolderPath": {
+																"value": "@'filterconditionaloutput'",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								]
 							}
 						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK",
-						"type": "DatasetReference",
-						"parameters": {
-							"ADLSFILE": {
-								"value": "@activity('Filter_CONDIONAL_DATA FROM SOURCE FILE').output.value",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					]
+				}
 			}
 		],
 		"annotations": []
