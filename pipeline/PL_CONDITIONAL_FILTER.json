@@ -57,7 +57,7 @@
 				}
 			},
 			{
-				"name": "ForEach",
+				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -75,7 +75,7 @@
 					},
 					"activities": [
 						{
-							"name": "Switch",
+							"name": "Switch1",
 							"type": "Switch",
 							"dependsOn": [],
 							"userProperties": [],
@@ -86,10 +86,10 @@
 								},
 								"cases": [
 									{
-										"value": "COPYDATA",
+										"value": "copy",
 										"activities": [
 											{
-												"name": "COPY FILTER OUTPUT TO ADLS GEN2",
+												"name": "Copy data1",
 												"type": "Copy",
 												"dependsOn": [],
 												"policy": {
@@ -138,10 +138,7 @@
 														"referenceName": "DS_SOURCE_BLOB_CSV_FILERCONDITIONAL",
 														"type": "DatasetReference",
 														"parameters": {
-															"FileName": {
-																"value": "@item().SIC_Code",
-																"type": "Expression"
-															}
+															"FileName": "@item().SIC_Code"
 														}
 													}
 												],
@@ -151,7 +148,7 @@
 														"type": "DatasetReference",
 														"parameters": {
 															"Filename": {
-																"value": "@concat('SIC_', string(item().SIC_Code), '.csv')\n",
+																"value": "@concat('SIC_', string(item().SIC_Code), '.csv')",
 																"type": "Expression"
 															}
 														}
