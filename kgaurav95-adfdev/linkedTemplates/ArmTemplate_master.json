@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CLOUD_PARQUET'"
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK'"
+		},
 		"LS_CSVITEM_TO_ADLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_CSVITEM_TO_ADLS'"
@@ -54,6 +58,10 @@
 		"LS_FALSE_TEXT_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_FALSE_TEXT'"
+		},
+		"LS_FILEROUTPUT_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_FILEROUTPUT_ADLS'"
 		},
 		"LS_FILE_CHECK_connectionString": {
 			"type": "secureString",
@@ -99,6 +107,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_LOGGING_DELETE'"
 		},
+		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_LOOKUP_INPUT_SOURCE_BLOB'"
+		},
 		"LS_PARQUET_LOOKUP_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_PARQUET_LOOKUP'"
@@ -111,6 +123,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SINK_BLOB'"
 		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_CSV_FILERCONDITIONAL'"
+		},
 		"LS_SINK_DELETE_ACTIVITY_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_DELETE_ACTIVITY'"
@@ -122,6 +138,10 @@
 		"LS_SINK_VALIDCSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_VALIDCSV'"
+		},
+		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_BLOB_CSV_FILERCONDITIONAL'"
 		},
 		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
 			"type": "secureString",
@@ -175,25 +195,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_TRUE_PAR'"
 		},
-		"LS_FILEROUTPUT_ADLS_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_FILEROUTPUT_ADLS'"
-		},
-		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK'"
-		},
-		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_LOOKUP_INPUT_SOURCE_BLOB'"
-		},
-		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_BLOB_CSV_FILERCONDITIONAL'"
-		},
-		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_CSV_FILERCONDITIONAL'"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95-keyvault.vault.azure.net/"
 		},
 		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 			"type": "string",
@@ -211,7 +215,15 @@
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
 		"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
@@ -238,6 +250,10 @@
 		"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url": {
 			"type": "string",
@@ -303,17 +319,17 @@
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
-		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
+		"SqlServer1_properties_typeProperties_server": {
 			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+			"defaultValue": "LAPTOP-SHRV1M0L\\SQLEXPRESS"
 		},
-		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+		"SqlServer1_properties_typeProperties_database": {
 			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+			"defaultValue": "SQLMIGRATION"
 		},
-		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+		"SqlServer1_properties_typeProperties_userName": {
 			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+			"defaultValue": "LAPTOP-SHRV1M0L\\KSAURAV-95"
 		},
 		"containerUri": {
 			"type": "string",
@@ -366,6 +382,9 @@
 					"LS_CLOUD_PARQUET_accountKey": {
 						"value": "[parameters('LS_CLOUD_PARQUET_accountKey')]"
 					},
+					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey')]"
+					},
 					"LS_CSVITEM_TO_ADLS_connectionString": {
 						"value": "[parameters('LS_CSVITEM_TO_ADLS_connectionString')]"
 					},
@@ -377,6 +396,9 @@
 					},
 					"LS_FALSE_TEXT_connectionString": {
 						"value": "[parameters('LS_FALSE_TEXT_connectionString')]"
+					},
+					"LS_FILEROUTPUT_ADLS_accountKey": {
+						"value": "[parameters('LS_FILEROUTPUT_ADLS_accountKey')]"
 					},
 					"LS_FILE_CHECK_connectionString": {
 						"value": "[parameters('LS_FILE_CHECK_connectionString')]"
@@ -393,14 +415,8 @@
 					"LS_FOREACH_SWITCH_SOURCE_connectionString": {
 						"value": "[parameters('LS_FOREACH_SWITCH_SOURCE_connectionString')]"
 					},
-					"LS_FOREACH_SWITCH_SOURCE_CP1_connectionString": {
-						"value": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP1_connectionString')]"
-					},
-					"LS_FOREACH_SWITCH_SOURCE_CP2_connectionString": {
-						"value": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP2_connectionString')]"
-					},
-					"LS_GET_METADATA_accountKey": {
-						"value": "[parameters('LS_GET_METADATA_accountKey')]"
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
 					"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 						"value": "[parameters('CLOUD_SQL_MIGRATION_properties_typeProperties_url')]"
@@ -414,17 +430,20 @@
 					"LS_CLOUD_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_CLOUD_PARQUET_properties_typeProperties_url')]"
 					},
+					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url')]"
+					},
 					"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url": {
 						"value": "[parameters('LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url')]"
+					},
+					"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_FILEROUTPUT_ADLS_properties_typeProperties_url')]"
 					},
 					"LS_FOREACH_SWITCH_SINK_CP1_properties_typeProperties_url": {
 						"value": "[parameters('LS_FOREACH_SWITCH_SINK_CP1_properties_typeProperties_url')]"
 					},
 					"LS_FOREACH_SWITCH_SINK_CP2_properties_typeProperties_url": {
 						"value": "[parameters('LS_FOREACH_SWITCH_SINK_CP2_properties_typeProperties_url')]"
-					},
-					"LS_GET_METADATA_properties_typeProperties_url": {
-						"value": "[parameters('LS_GET_METADATA_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -444,6 +463,15 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_FOREACH_SWITCH_SOURCE_CP1_connectionString": {
+						"value": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP1_connectionString')]"
+					},
+					"LS_FOREACH_SWITCH_SOURCE_CP2_connectionString": {
+						"value": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP2_connectionString')]"
+					},
+					"LS_GET_METADATA_accountKey": {
+						"value": "[parameters('LS_GET_METADATA_accountKey')]"
+					},
 					"LS_IF_TRUE_connectionString": {
 						"value": "[parameters('LS_IF_TRUE_connectionString')]"
 					},
@@ -452,6 +480,9 @@
 					},
 					"LS_LOGGING_DELETE_connectionString": {
 						"value": "[parameters('LS_LOGGING_DELETE_connectionString')]"
+					},
+					"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+						"value": "[parameters('LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString')]"
 					},
 					"LS_PARQUET_LOOKUP_accountKey": {
 						"value": "[parameters('LS_PARQUET_LOOKUP_accountKey')]"
@@ -462,6 +493,9 @@
 					"LS_SINK_BLOB_connectionString": {
 						"value": "[parameters('LS_SINK_BLOB_connectionString')]"
 					},
+					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey')]"
+					},
 					"LS_SINK_DELETE_ACTIVITY_accountKey": {
 						"value": "[parameters('LS_SINK_DELETE_ACTIVITY_accountKey')]"
 					},
@@ -470,6 +504,9 @@
 					},
 					"LS_SINK_VALIDCSV_accountKey": {
 						"value": "[parameters('LS_SINK_VALIDCSV_accountKey')]"
+					},
+					"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+						"value": "[parameters('LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString')]"
 					},
 					"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
 						"value": "[parameters('LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey')]"
@@ -483,23 +520,8 @@
 					"LS_SOURCE_VALIDCSV_connectionString": {
 						"value": "[parameters('LS_SOURCE_VALIDCSV_connectionString')]"
 					},
-					"LS_SWITCHCSV_TEST_accountKey": {
-						"value": "[parameters('LS_SWITCHCSV_TEST_accountKey')]"
-					},
-					"LS_TEXT_SINK_accountKey": {
-						"value": "[parameters('LS_TEXT_SINK_accountKey')]"
-					},
-					"LS_TEXT_SINK_ADLS_accountKey": {
-						"value": "[parameters('LS_TEXT_SINK_ADLS_accountKey')]"
-					},
-					"LS_TEXT_SOURCE_connectionString": {
-						"value": "[parameters('LS_TEXT_SOURCE_connectionString')]"
-					},
-					"LS_TEXT_SWITCH_SINK_accountKey": {
-						"value": "[parameters('LS_TEXT_SWITCH_SINK_accountKey')]"
-					},
-					"LS_TEXT_SWITCH_SOURCE_connectionString": {
-						"value": "[parameters('LS_TEXT_SWITCH_SOURCE_connectionString')]"
+					"LS_GET_METADATA_properties_typeProperties_url": {
+						"value": "[parameters('LS_GET_METADATA_properties_typeProperties_url')]"
 					},
 					"LS_IF_TRUE_SINK_properties_typeProperties_url": {
 						"value": "[parameters('LS_IF_TRUE_SINK_properties_typeProperties_url')]"
@@ -509,6 +531,9 @@
 					},
 					"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
 						"value": "[parameters('LS_RESTAPI_SOURCE_properties_typeProperties_url')]"
+					},
+					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url')]"
 					},
 					"LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url": {
 						"value": "[parameters('LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url')]"
@@ -524,18 +549,6 @@
 					},
 					"LS_SOURCE_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SOURCE_PARQUET_properties_typeProperties_url')]"
-					},
-					"LS_SWITCHCSV_TEST_properties_typeProperties_url": {
-						"value": "[parameters('LS_SWITCHCSV_TEST_properties_typeProperties_url')]"
-					},
-					"LS_TEXT_SINK_properties_typeProperties_url": {
-						"value": "[parameters('LS_TEXT_SINK_properties_typeProperties_url')]"
-					},
-					"LS_TEXT_SINK_ADLS_properties_typeProperties_url": {
-						"value": "[parameters('LS_TEXT_SINK_ADLS_properties_typeProperties_url')]"
-					},
-					"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
-						"value": "[parameters('LS_TEXT_SWITCH_SINK_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -557,35 +570,41 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SWITCHCSV_TEST_accountKey": {
+						"value": "[parameters('LS_SWITCHCSV_TEST_accountKey')]"
+					},
+					"LS_TEXT_SINK_accountKey": {
+						"value": "[parameters('LS_TEXT_SINK_accountKey')]"
+					},
+					"LS_TEXT_SINK_ADLS_accountKey": {
+						"value": "[parameters('LS_TEXT_SINK_ADLS_accountKey')]"
+					},
+					"LS_TEXT_SOURCE_connectionString": {
+						"value": "[parameters('LS_TEXT_SOURCE_connectionString')]"
+					},
+					"LS_TEXT_SWITCH_SINK_accountKey": {
+						"value": "[parameters('LS_TEXT_SWITCH_SINK_accountKey')]"
+					},
+					"LS_TEXT_SWITCH_SOURCE_connectionString": {
+						"value": "[parameters('LS_TEXT_SWITCH_SOURCE_connectionString')]"
+					},
 					"LS_TRUE_PAR_accountKey": {
 						"value": "[parameters('LS_TRUE_PAR_accountKey')]"
 					},
-					"LS_FILEROUTPUT_ADLS_accountKey": {
-						"value": "[parameters('LS_FILEROUTPUT_ADLS_accountKey')]"
+					"LS_SWITCHCSV_TEST_properties_typeProperties_url": {
+						"value": "[parameters('LS_SWITCHCSV_TEST_properties_typeProperties_url')]"
 					},
-					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
-						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey')]"
+					"LS_TEXT_SINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_TEXT_SINK_properties_typeProperties_url')]"
 					},
-					"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
-						"value": "[parameters('LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString')]"
+					"LS_TEXT_SINK_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_TEXT_SINK_ADLS_properties_typeProperties_url')]"
 					},
-					"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
-						"value": "[parameters('LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString')]"
-					},
-					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
-						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey')]"
+					"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_TEXT_SWITCH_SINK_properties_typeProperties_url')]"
 					},
 					"LS_TRUE_PAR_properties_typeProperties_url": {
 						"value": "[parameters('LS_TRUE_PAR_properties_typeProperties_url')]"
-					},
-					"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
-						"value": "[parameters('LS_FILEROUTPUT_ADLS_properties_typeProperties_url')]"
-					},
-					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
-						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url')]"
-					},
-					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
-						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -630,6 +649,15 @@
 					},
 					"LS_SQL_MIGRATION_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SQL_MIGRATION_properties_typeProperties_userName')]"
+					},
+					"SqlServer1_properties_typeProperties_server": {
+						"value": "[parameters('SqlServer1_properties_typeProperties_server')]"
+					},
+					"SqlServer1_properties_typeProperties_database": {
+						"value": "[parameters('SqlServer1_properties_typeProperties_database')]"
+					},
+					"SqlServer1_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServer1_properties_typeProperties_userName')]"
 					}
 				}
 			},

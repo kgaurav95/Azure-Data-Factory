@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CLOUD_PARQUET'"
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK'"
+		},
 		"LS_CSVITEM_TO_ADLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_CSVITEM_TO_ADLS'"
@@ -54,6 +58,10 @@
 		"LS_FALSE_TEXT_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_FALSE_TEXT'"
+		},
+		"LS_FILEROUTPUT_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_FILEROUTPUT_ADLS'"
 		},
 		"LS_FILE_CHECK_connectionString": {
 			"type": "secureString",
@@ -75,17 +83,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_FOREACH_SWITCH_SOURCE'"
 		},
-		"LS_FOREACH_SWITCH_SOURCE_CP1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_FOREACH_SWITCH_SOURCE_CP1'"
-		},
-		"LS_FOREACH_SWITCH_SOURCE_CP2_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_FOREACH_SWITCH_SOURCE_CP2'"
-		},
-		"LS_GET_METADATA_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_GET_METADATA'"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95-keyvault.vault.azure.net/"
 		},
 		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 			"type": "string",
@@ -103,7 +103,15 @@
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
 		"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
@@ -114,16 +122,25 @@
 		"LS_FOREACH_SWITCH_SINK_CP2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
-		},
-		"LS_GET_METADATA_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CLOUD_SQL_MIGRATION')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -245,6 +262,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_CSVITEM_TO_ADLS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -296,6 +330,23 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_FALSE_TEXT_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_FILEROUTPUT_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_FILEROUTPUT_ADLS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_FILEROUTPUT_ADLS_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -369,49 +420,6 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_FOREACH_SWITCH_SOURCE_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_FOREACH_SWITCH_SOURCE_CP1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP1_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_FOREACH_SWITCH_SOURCE_CP2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP2_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_GET_METADATA')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_GET_METADATA_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_GET_METADATA_accountKey')]"
-					}
 				}
 			},
 			"dependsOn": []

@@ -29,6 +29,9 @@
 		"LS_CLOUD_PARQUET_accountKey": {
 			"value": ""
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+			"value": ""
+		},
 		"LS_CSVITEM_TO_ADLS_connectionString": {
 			"value": ""
 		},
@@ -39,6 +42,9 @@
 			"value": ""
 		},
 		"LS_FALSE_TEXT_connectionString": {
+			"value": ""
+		},
+		"LS_FILEROUTPUT_ADLS_accountKey": {
 			"value": ""
 		},
 		"LS_FILE_CHECK_connectionString": {
@@ -74,6 +80,9 @@
 		"LS_LOGGING_DELETE_connectionString": {
 			"value": ""
 		},
+		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+			"value": ""
+		},
 		"LS_PARQUET_LOOKUP_accountKey": {
 			"value": ""
 		},
@@ -83,6 +92,9 @@
 		"LS_SINK_BLOB_connectionString": {
 			"value": ""
 		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+			"value": ""
+		},
 		"LS_SINK_DELETE_ACTIVITY_accountKey": {
 			"value": ""
 		},
@@ -90,6 +102,9 @@
 			"value": ""
 		},
 		"LS_SINK_VALIDCSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
 			"value": ""
 		},
 		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
@@ -131,20 +146,8 @@
 		"LS_TRUE_PAR_accountKey": {
 			"value": ""
 		},
-		"LS_FILEROUTPUT_ADLS_accountKey": {
-			"value": ""
-		},
-		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
-			"value": ""
-		},
-		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
-			"value": ""
-		},
-		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
-			"value": ""
-		},
-		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
-			"value": ""
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kgaurav95-keyvault.vault.azure.net/"
 		},
 		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
@@ -158,7 +161,13 @@
 		"LS_CLOUD_PARQUET_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
 		"LS_DELETEFILE_FROM_ADLS_GEN2_SOURCE_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_FOREACH_SWITCH_SINK_CP1_properties_typeProperties_url": {
@@ -178,6 +187,9 @@
 		},
 		"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
 			"value": "https://retoolapi.dev/5yDVOt/data"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
@@ -227,14 +239,14 @@
 		"LS_TRUE_PAR_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
-		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
-			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "LAPTOP-SHRV1M0L\\SQLEXPRESS"
 		},
-		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
-			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "SQLMIGRATION"
 		},
-		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
-			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "LAPTOP-SHRV1M0L\\KSAURAV-95"
 		}
 	}
 }

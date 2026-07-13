@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "kgaurav95-adfdev"
 		},
+		"LS_FOREACH_SWITCH_SOURCE_CP1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_FOREACH_SWITCH_SOURCE_CP1'"
+		},
+		"LS_FOREACH_SWITCH_SOURCE_CP2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_FOREACH_SWITCH_SOURCE_CP2'"
+		},
+		"LS_GET_METADATA_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_GET_METADATA'"
+		},
 		"LS_IF_TRUE_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_IF_TRUE'"
@@ -18,6 +30,10 @@
 		"LS_LOGGING_DELETE_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_LOGGING_DELETE'"
+		},
+		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_LOOKUP_INPUT_SOURCE_BLOB'"
 		},
 		"LS_PARQUET_LOOKUP_accountKey": {
 			"type": "secureString",
@@ -31,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SINK_BLOB'"
 		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_CSV_FILERCONDITIONAL'"
+		},
 		"LS_SINK_DELETE_ACTIVITY_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_DELETE_ACTIVITY'"
@@ -42,6 +62,10 @@
 		"LS_SINK_VALIDCSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_VALIDCSV'"
+		},
+		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_BLOB_CSV_FILERCONDITIONAL'"
 		},
 		"LS_SOURCE_DATA_TO_LOOKUP_FILTER_accountKey": {
 			"type": "secureString",
@@ -59,29 +83,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_VALIDCSV'"
 		},
-		"LS_SWITCHCSV_TEST_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SWITCHCSV_TEST'"
-		},
-		"LS_TEXT_SINK_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_TEXT_SINK'"
-		},
-		"LS_TEXT_SINK_ADLS_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_TEXT_SINK_ADLS'"
-		},
-		"LS_TEXT_SOURCE_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_TEXT_SOURCE'"
-		},
-		"LS_TEXT_SWITCH_SINK_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_TEXT_SWITCH_SINK'"
-		},
-		"LS_TEXT_SWITCH_SOURCE_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_TEXT_SWITCH_SOURCE'"
+		"LS_GET_METADATA_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_IF_TRUE_SINK_properties_typeProperties_url": {
 			"type": "string",
@@ -94,6 +98,10 @@
 		"LS_RESTAPI_SOURCE_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_SINK_DELETE_ACTIVITY_properties_typeProperties_url": {
 			"type": "string",
@@ -114,28 +122,55 @@
 		"LS_SOURCE_PARQUET_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
-		},
-		"LS_SWITCHCSV_TEST_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
-		},
-		"LS_TEXT_SINK_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
-		},
-		"LS_TEXT_SINK_ADLS_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
-		},
-		"LS_TEXT_SWITCH_SINK_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_FOREACH_SWITCH_SOURCE_CP1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_FOREACH_SWITCH_SOURCE_CP2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_FOREACH_SWITCH_SOURCE_CP2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_GET_METADATA')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_GET_METADATA_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_GET_METADATA_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LS_IF_TRUE')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -175,6 +210,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_LOGGING_DELETE_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_LOOKUP_INPUT_SOURCE_BLOB')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -238,6 +286,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_BLOB_CSV_FILERCONDITIONAL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SINK_DELETE_ACTIVITY')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -284,6 +349,19 @@
 						"type": "SecureString",
 						"value": "[parameters('LS_SINK_VALIDCSV_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SOURCE_BLOB_CSV_FILERCONDITIONAL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -344,100 +422,6 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_SOURCE_VALIDCSV_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SWITCHCSV_TEST')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SWITCHCSV_TEST_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SWITCHCSV_TEST_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_TEXT_SINK')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_TEXT_SINK_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_TEXT_SINK_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_TEXT_SINK_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_TEXT_SINK_ADLS_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_TEXT_SINK_ADLS_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_TEXT_SOURCE')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('LS_TEXT_SOURCE_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_TEXT_SWITCH_SINK')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_TEXT_SWITCH_SINK_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_TEXT_SWITCH_SINK_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_TEXT_SWITCH_SOURCE')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('LS_TEXT_SWITCH_SOURCE_connectionString')]"
 				}
 			},
 			"dependsOn": []
