@@ -175,6 +175,26 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_TRUE_PAR'"
 		},
+		"LS_FILEROUTPUT_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_FILEROUTPUT_ADLS'"
+		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK'"
+		},
+		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_LOOKUP_INPUT_SOURCE_BLOB'"
+		},
+		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SOURCE_BLOB_CSV_FILERCONDITIONAL'"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_CSV_FILERCONDITIONAL'"
+		},
 		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
@@ -280,6 +300,18 @@
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_TRUE_PAR_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
@@ -528,8 +560,32 @@
 					"LS_TRUE_PAR_accountKey": {
 						"value": "[parameters('LS_TRUE_PAR_accountKey')]"
 					},
+					"LS_FILEROUTPUT_ADLS_accountKey": {
+						"value": "[parameters('LS_FILEROUTPUT_ADLS_accountKey')]"
+					},
+					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey')]"
+					},
+					"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+						"value": "[parameters('LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString')]"
+					},
+					"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+						"value": "[parameters('LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString')]"
+					},
+					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey')]"
+					},
 					"LS_TRUE_PAR_properties_typeProperties_url": {
 						"value": "[parameters('LS_TRUE_PAR_properties_typeProperties_url')]"
+					},
+					"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_FILEROUTPUT_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+						"value": "[parameters('LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url')]"
+					},
+					"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -579,6 +635,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'kgaurav95-adfdev_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "kgaurav95-adfdev_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'kgaurav95-adfdev_ArmTemplate_3')]"
 			]
 		}
 	]

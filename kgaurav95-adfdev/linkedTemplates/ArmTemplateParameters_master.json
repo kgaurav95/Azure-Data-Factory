@@ -131,6 +131,21 @@
 		"LS_TRUE_PAR_accountKey": {
 			"value": ""
 		},
+		"LS_FILEROUTPUT_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_accountKey": {
+			"value": ""
+		},
+		"LS_LOOKUP_INPUT_SOURCE_BLOB_connectionString": {
+			"value": ""
+		},
+		"LS_SOURCE_BLOB_CSV_FILERCONDITIONAL_connectionString": {
+			"value": ""
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_accountKey": {
+			"value": ""
+		},
 		"CLOUD_SQL_MIGRATION_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
@@ -210,6 +225,15 @@
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"LS_TRUE_PAR_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_FILEROUTPUT_ADLS_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_CONDITIONAL_FILTER_OUTPUT_COPY_TO_ADLS_SINK_properties_typeProperties_url": {
+			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
+		},
+		"LS_SINK_BLOB_CSV_FILERCONDITIONAL_properties_typeProperties_url": {
 			"value": "https://kgaurav95adlsgen.dfs.core.windows.net/"
 		},
 		"containerUri": {
