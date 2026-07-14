@@ -1,5 +1,5 @@
 {
-	"name": "PL_PARENT_WATERMK_TABLE",
+	"name": "PARENT_PIPELINE_ORCHESTRATION_MASTER",
 	"properties": {
 		"activities": [
 			{
@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT TableSchema,TableName,WatermarkColumn,LastLoadValue FROM dbo.ADF_Watermark_Table",
+						"sqlReaderQuery": {
+							"value": "SELECT TableSchema,TableName,WatermarkColumn,LastLoadValue FROM dbo.ADF_Watermark_Table",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -44,7 +47,21 @@
 					"items": {
 						"value": "@activity('LOOKUP_WATERMK_SQL_TABLE').output.value",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "Execute Pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"waitOnCompletion": true
+							}
+						}
+					]
 				}
 			}
 		],
