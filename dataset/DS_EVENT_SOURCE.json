@@ -1,0 +1,22 @@
+{
+	"name": "DS_EVENT_SOURCE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_EVENT_SOURCE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "eventtriggerfile"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
