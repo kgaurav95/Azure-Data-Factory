@@ -21,7 +21,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "eventtriggerfile",
 							"wildcardFileName": "*csv",
 							"enablePartitionDiscovery": false
 						},

@@ -1,0 +1,24 @@
+{
+	"name": "STORAGE TRIGGER",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_EVENT_TRIGGER_TEST",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/eventtriggerfile/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/579f46a1-9518-47a1-ae2a-c723d2c022ea/resourceGroups/kgaurav95-adfrg/providers/Microsoft.Storage/storageAccounts/kgaurav95blobstorage1",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
