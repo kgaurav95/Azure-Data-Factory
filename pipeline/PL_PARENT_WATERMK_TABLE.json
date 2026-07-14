@@ -1,0 +1,53 @@
+{
+	"name": "PL_PARENT_WATERMK_TABLE",
+	"properties": {
+		"activities": [
+			{
+				"name": "LOOKUP_WATERMK_SQL_TABLE",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT TableSchema,TableName,WatermarkColumn,LastLoadValue FROM dbo.ADF_Watermark_Table",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_WATERMK_TABLE_SOURCE",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEachSQLTABLE",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LOOKUP_WATERMK_SQL_TABLE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LOOKUP_WATERMK_SQL_TABLE').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
