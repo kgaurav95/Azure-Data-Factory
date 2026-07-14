@@ -1,5 +1,5 @@
 {
-	"name": "PARENT_PIPELINE_ORCHESTRATION_MASTER",
+	"name": "PARENT_PIPELINE_ORCHESTRATION",
 	"properties": {
 		"activities": [
 			{
